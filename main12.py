@@ -88,9 +88,9 @@ suggest_word = "Don't type too much"
 suggest_word = nice_present("left", 15, suggest, "italian")
 
 if input_name.lower() == "rick astley":
-    st.video(url, autoplay=True, key="meme")
+    st.video(url, autoplay=True, key="1")
 if amount_word >= 70:
-    st.video(url2, autoplay=True, key="realy")
+    st.video(url2, autoplay=True, key="2")
 
 if input_name and phone and locate and amount_word:
     col1, col2 = st.columns(2)
