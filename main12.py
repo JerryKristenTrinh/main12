@@ -72,8 +72,8 @@ if "answered" not in st.session_state:
 if "start_time" not in st.session_state:
     st.session_state.start_time = None
 
-url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-url2 = "https://www.youtube.com/watch?v=LO8k-Y9luYU"
+url = "https://youtu.be/dQw4w9WgXcQ"
+url2 = "https://youtu.be/LO8k-Y9luYU"
 
 title = "English vocabulary practice test"
 title = nice_present("center", 50, title, "bold")
