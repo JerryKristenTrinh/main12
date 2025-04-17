@@ -1,4 +1,4 @@
-﻿import random
+import random
 import streamlit as st
 import string
 import datetime
@@ -76,6 +76,8 @@ title = "English vocabulary practice test"
 title = nice_present("center", 50, title, "bold")
 
 input_name = st.text_input("Type your name:")
+suggest = "Try Rick Astley"
+suggest = nice_present("left", 15, suggest, "italian")
 phone = st.text_input("Type your phone number: ")
 locate = st.text_input("Type your location: ")
 amount_word = int(st.number_input("Type how much word do you want to play:"))
@@ -115,12 +117,17 @@ if input_name and phone and locate and amount_word:
                 st.session_state.correct_guess = True
             else:
                 st.error(f"Incorrect guess. The correct answer is: {st.session_state.name}")
-            st.session_state.question_count += 1
+            if not st.session_state.question_count >= (amount_word):
+                st.session_state.question_count += 1
+            else:
+                break
 
     if st.session_state.answered:
-        if st.session_state.question_count >= (amount_word+1):
+        if st.session_state.question_count >= (amount_word):
             pass
         if st.button("Next Word"):
+            if st.session_state.question_count >= (amount_word):
+                pass
             st.session_state.name = random.choice(objects)
             st.session_state.hidden_indices = sorted(random.sample(range(len(st.session_state.name)), min(2, max(1, len(st.session_state.name) // 2))))
             st.session_state.letter_show = ["_" if i in st.session_state.hidden_indices else char for i, char in enumerate(st.session_state.name)]
@@ -132,7 +139,7 @@ if input_name and phone and locate and amount_word:
             st.session_state.answered = False
             st.rerun()
 
-    if st.session_state.question_count > amount_word and st.session_state.start_time is not None:
+    if st.session_state.question_count >= amount_word and st.session_state.start_time is not None:
         end_time = datetime.datetime.now()
         total_time = end_time - st.session_state.start_time
         time_seconds = seconds(total_time)
