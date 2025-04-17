@@ -75,7 +75,7 @@ if "start_time" not in st.session_state:
 url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 
 title = "English vocabulary practice game"
-title = nice_present("center", 50, title, "bold")
+title = nice_present("center", 45, title, "bold")
 
 input_name = st.text_input("Type your name:")
 suggest = "Try Rick Astley"
