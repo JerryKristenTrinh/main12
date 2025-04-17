@@ -73,9 +73,10 @@ if "start_time" not in st.session_state:
     st.session_state.start_time = None
 
 url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+url2 = "https://www.youtube.com/watch?v=LO8k-Y9luYU"
 
-title = "English vocabulary practice game"
-title = nice_present("center", 45, title, "bold")
+title = "English vocabulary practice test"
+title = nice_present("center", 50, title, "bold")
 
 input_name = st.text_input("Type your name:")
 suggest = "Try Rick Astley"
@@ -83,9 +84,13 @@ suggest = nice_present("left", 15, suggest, "italian")
 phone = st.text_input("Type your phone number: ")
 locate = st.text_input("Type your location: ")
 amount_word = int(st.number_input("Type how much word do you want to play:"))
+suggest_word = "Don't type too much"
+suggest_word = nice_present("left", 15, suggest, "italian")
 
 if input_name.lower() == "rick astley":
-    st.video(url, autoplay=True)
+    st.video(url, autoplay=True, key="meme")
+if amount_word >= 70:
+    st.video(url2, autoplay=True, key="realy")
 
 if input_name and phone and locate and amount_word:
     col1, col2 = st.columns(2)
