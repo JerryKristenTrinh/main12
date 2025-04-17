@@ -85,12 +85,12 @@ phone = st.text_input("Type your phone number: ")
 locate = st.text_input("Type your location: ")
 amount_word = int(st.number_input("Type how much word do you want to play:"))
 suggest_word = "Don't type too much"
-suggest_word = nice_present("left", 15, suggest, "italian")
+suggest_word = nice_present("left", 15, suggest_word, "italian")
 
 if input_name.lower() == "rick astley":
-    st.video(url, key="1", autoplay=True)
+    st.video(url, autoplay=True)
 if amount_word >= 70:
-    st.video(url2, key="2", autoplay=True)
+    st.video(url2, autoplay=True)
 
 if input_name and phone and locate and amount_word:
     col1, col2 = st.columns(2)
