@@ -73,7 +73,8 @@ if "start_time" not in st.session_state:
     st.session_state.start_time = None
 
 url = "https://youtu.be/dQw4w9WgXcQ"
-url2 = "https://youtu.be/LO8k-Y9luYU"
+url2 = "https://youtu.be/LO8k-Y9luYU?t=8"
+url3 = "https://youtu.be/ecJSxFzvSKk"
 
 title = "English vocabulary practice test"
 title = nice_present("center", 50, title, "bold")
@@ -89,6 +90,8 @@ suggest_word = nice_present("left", 15, suggest_word, "italian")
 
 if input_name.lower() == "rick astley":
     st.video(url, autoplay=True)
+if str(phone).lower() in ["30/4", "30-4", "30.4", "30 4"]:
+    st.video(url3, autoplay=True)
 if amount_word >= 70:
     st.video(url2, autoplay=True)
 
