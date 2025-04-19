@@ -190,9 +190,9 @@ suggest_word = nice_present("left", 15, suggest_word, "italian")
 
 if input_name.lower() == "rick astley":
     st.video(url, autoplay=True)
-if amount_word >= 70:
+elif amount_word >= 70:
     st.video(url2, autoplay=True)
-if str(phone).lower() in ["30/4", "30-4", "30.4", "30 4"]:
+elif str(phone).lower() in ["30/4", "30-4", "30.4", "30 4", "30 / 4", "30_4", "30 - 4"]:
     st.video(url3, autoplay=True)
 
 if input_name and phone and locate and amount_word:
