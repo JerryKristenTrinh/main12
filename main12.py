@@ -255,7 +255,7 @@ if input_name and amount_word:
             st.session_state.answered = False
             st.rerun()
 
-    if st.session_state.question_count >= amount_word and st.session_state.start_time is not None:
+    if st.session_state.check >= amount_word and st.session_state.start_time is not None:
         end_time = datetime.datetime.now()
         total_time = end_time - st.session_state.start_time
         time_seconds = seconds(total_time)
