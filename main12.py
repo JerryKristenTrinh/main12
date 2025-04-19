@@ -149,6 +149,8 @@ def seconds(time_delta: datetime.timedelta) -> float:
     rounded_seconds = round(total_seconds, 3)
     return rounded_seconds
 
+if "check" not in st.session_state:
+    st.session_state.check = 0
 if "question_count" not in st.session_state:
     st.session_state.question_count = 1
 if "correct_answer" not in st.session_state:
@@ -220,7 +222,7 @@ if input_name and amount_word:
         buttons.append(cols[i].button(",".join(st.session_state.answers[i]).lower(), key=f"button_{i}", disabled=st.session_state.answered))
 
     for i, button in enumerate(buttons):
-        if st.session_state.question_count >= (amount_word+1):
+        if st.session_state.check >= (amount_word):
             break
         if button and not st.session_state.answered:
             st.session_state.answered = True
@@ -232,14 +234,15 @@ if input_name and amount_word:
                 st.error(f"Incorrect guess. The correct answer is: {st.session_state.name}")
             if not st.session_state.question_count >= (amount_word):
                 st.session_state.question_count += 1
+                st.session_state.check += 1
             else:
                 break
 
     if st.session_state.answered:
-        if st.session_state.question_count >= (amount_word):
+        if st.session_state.check >= (amount_word):
             pass
         if st.button("Next Word"):
-            if st.session_state.question_count >= (amount_word):
+            if st.session_state.check >= (amount_word):
                 pass
             st.session_state.name = random.choice(objects)
             st.session_state.hidden_indices = sorted(random.sample(range(len(st.session_state.name)), min(2, max(1, len(st.session_state.name) // 2))))
