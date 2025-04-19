@@ -194,8 +194,11 @@ if amount_word >= 70:
     st.video(url2, autoplay=True)
 if str(phone).lower() in ["30/4", "30-4", "30.4", "30 4", "30 / 4", "30_4", "30 - 4"]:
     st.video(url3, autoplay=True)
+elif locate.lower() in ["tp hcm", "tphcm", "thành phố hồ chí minh", "hồ chí minh", 
+                        "ho chi minh city", "ho chi minh", "tp ho chi minh", "tp hồ chí minh"]:
+    st.video(url3, autoplay=True)
 
-if input_name and phone and locate and amount_word:
+if input_name and amount_word:
     col1, col2 = st.columns(2)
     col1.markdown(f"""
         <div style='text-align: left; font-size: 25px;'>
