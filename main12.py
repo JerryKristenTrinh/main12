@@ -149,8 +149,6 @@ def seconds(time_delta: datetime.timedelta) -> float:
     rounded_seconds = round(total_seconds, 3)
     return rounded_seconds
 
-if "check" not in st.session_state:
-    st.session_state.check = 0
 if "question_count" not in st.session_state:
     st.session_state.question_count = 1
 if "correct_answer" not in st.session_state:
@@ -197,7 +195,7 @@ if amount_word >= 70:
 if str(phone).lower() in ["30/4", "30-4", "30.4", "30 4"]:
     st.video(url3, autoplay=True)
 
-if input_name and amount_word:
+if input_name and phone and locate and amount_word:
     col1, col2 = st.columns(2)
     col1.markdown(f"""
         <div style='text-align: left; font-size: 25px;'>
@@ -222,7 +220,7 @@ if input_name and amount_word:
         buttons.append(cols[i].button(",".join(st.session_state.answers[i]).lower(), key=f"button_{i}", disabled=st.session_state.answered))
 
     for i, button in enumerate(buttons):
-        if st.session_state.check >= (amount_word):
+        if st.session_state.question_count >= (amount_word+1):
             break
         if button and not st.session_state.answered:
             st.session_state.answered = True
@@ -234,15 +232,14 @@ if input_name and amount_word:
                 st.error(f"Incorrect guess. The correct answer is: {st.session_state.name}")
             if not st.session_state.question_count >= (amount_word):
                 st.session_state.question_count += 1
-                st.session_state.check += 1
             else:
                 break
 
     if st.session_state.answered:
-        if st.session_state.check >= (amount_word):
+        if st.session_state.question_count >= (amount_word):
             pass
         if st.button("Next Word"):
-            if st.session_state.check >= (amount_word):
+            if st.session_state.question_count >= (amount_word):
                 pass
             st.session_state.name = random.choice(objects)
             st.session_state.hidden_indices = sorted(random.sample(range(len(st.session_state.name)), min(2, max(1, len(st.session_state.name) // 2))))
@@ -255,15 +252,11 @@ if input_name and amount_word:
             st.session_state.answered = False
             st.rerun()
 
-    if st.session_state.check >= amount_word and st.session_state.start_time is not None:
+    if st.session_state.question_count >= amount_word and st.session_state.start_time is not None:
         end_time = datetime.datetime.now()
         total_time = end_time - st.session_state.start_time
         time_seconds = seconds(total_time)
 
-        if phone == None:
-            phone = "No answer"
-        if locate == None:
-            locate = "No answer"
         information = f"""Name: {input_name}
 Phone number: {phone}
 Location:{locate}
