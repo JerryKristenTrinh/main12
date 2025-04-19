@@ -195,7 +195,7 @@ if amount_word >= 70:
 if str(phone).lower() in ["30/4", "30-4", "30.4", "30 4"]:
     st.video(url3, autoplay=True)
 
-if input_name and phone and locate and amount_word:
+if input_name and amount_word:
     col1, col2 = st.columns(2)
     col1.markdown(f"""
         <div style='text-align: left; font-size: 25px;'>
@@ -257,6 +257,10 @@ if input_name and phone and locate and amount_word:
         total_time = end_time - st.session_state.start_time
         time_seconds = seconds(total_time)
 
+        if phone == None:
+            phone = "No answer"
+        if locate == None:
+            locate = "No answer"
         information = f"""Name: {input_name}
 Phone number: {phone}
 Location:{locate}
