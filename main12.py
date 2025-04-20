@@ -148,7 +148,8 @@ def seconds(time_delta: datetime.timedelta) -> float:
     total_seconds = time_delta.total_seconds()
     rounded_seconds = round(total_seconds, 3)
     return rounded_seconds
-
+if "check" not in st.session_state:
+    st.session_state.check = 0
 if "question_count" not in st.session_state:
     st.session_state.question_count = 1
 if "correct_answer" not in st.session_state:
@@ -239,10 +240,10 @@ if input_name and amount_word:
                 break
 
     if st.session_state.answered:
-        if st.session_state.question_count >= (amount_word):
+        if st.session_state.check >= (amount_word):
             pass
         if st.button("Next Word"):
-            if st.session_state.question_count >= (amount_word):
+            if st.session_state.check >= (amount_word):
                 pass
             st.session_state.name = random.choice(objects)
             st.session_state.hidden_indices = sorted(random.sample(range(len(st.session_state.name)), min(2, max(1, len(st.session_state.name) // 2))))
@@ -251,11 +252,12 @@ if input_name and amount_word:
             correct_answer_list = list(st.session_state.missing_letters)
             incorrect_answers = [list(_random_letters(len(correct_answer_list))) for _ in range(3)]
             st.session_state.answers = random.sample([correct_answer_list] + incorrect_answers, k=4)
+            st.session_state.check = st.session_state.question_count - 1
             st.session_state.correct_guess = False
             st.session_state.answered = False
             st.rerun()
 
-    if st.session_state.question_count >= amount_word and st.session_state.start_time is not None:
+    if st.session_state.check >= amount_word and st.session_state.start_time is not None:
         end_time = datetime.datetime.now()
         total_time = end_time - st.session_state.start_time
         time_seconds = seconds(total_time)
