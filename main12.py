@@ -180,7 +180,7 @@ title = "English vocabulary practice test"
 title = nice_present("center", 50, title, "bold")
 
 input_name = st.text_input("Type your name:")
-suggest = "Try Rick Astley"
+suggest = "Try Yeltsa Kcir"
 suggest = nice_present("left", 15, suggest, "italian")
 phone = st.text_input("Type your phone number: ")
 locate = st.text_input("Type your location: ")
@@ -188,7 +188,7 @@ amount_word = int(st.number_input("Type how much word do you want to play:"))
 suggest_word = "Don't type too much"
 suggest_word = nice_present("left", 15, suggest_word, "italian")
 
-if input_name.lower() == "rick astley":
+if input_name.lower() in ["yeltsa kcir", "rick astley"]:
     st.video(url, autoplay=True)
 if amount_word >= 70:
     st.video(url2, autoplay=True)
