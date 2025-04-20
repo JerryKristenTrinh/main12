@@ -224,18 +224,20 @@ if input_name and amount_word:
         buttons.append(cols[i].button(",".join(st.session_state.answers[i]).lower(), key=f"button_{i}", disabled=st.session_state.answered))
 
     for i, button in enumerate(buttons):
-        if st.session_state.question_count >= (amount_word+1):
+        if st.session_state.check >= (amount_word+1):
             break
         if button and not st.session_state.answered:
             st.session_state.answered = True
             if "".join(st.session_state.answers[i]) == st.session_state.missing_letters:
                 st.success(f"{st.session_state.name} is a correct guess!")
                 st.session_state.correct_answer += 1
+                st.session_state.check += 1
                 st.session_state.correct_guess = True
             else:
                 st.error(f"Incorrect guess. The correct answer is: {st.session_state.name}")
-            if not st.session_state.question_count >= (amount_word):
+            if not st.session_state.check >= (amount_word):
                 st.session_state.question_count += 1
+                st.session_state.check += 1
             else:
                 break
 
