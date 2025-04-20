@@ -177,7 +177,7 @@ url2 = "https://youtu.be/LO8k-Y9luYU?t=8"
 url3 = "https://youtu.be/ecJSxFzvSKk"
 
 title = "English vocabulary practice game"
-title = nice_present("center", 50, title, "bold")
+title = nice_present("center", 45, title, "bold")
 
 input_name = st.text_input("Type your name:")
 suggest = "Try Yeltsa Kcir"
