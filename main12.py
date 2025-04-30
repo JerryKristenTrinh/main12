@@ -257,6 +257,7 @@ if input_name and amount_word:
             st.session_state.check = st.session_state.question_count - 1
             st.session_state.correct_guess = False
             st.session_state.answered = False
+            st.session_state.check = st.session_state.question_count - 1
             st.rerun()
 
     if st.session_state.check >= amount_word and st.session_state.start_time is not None:
